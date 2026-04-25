@@ -5,7 +5,7 @@
 ## 1. PRODUCT OVERVIEW
 
 **Name:** modelup  
-**Type:** CLI-first SaaS tool  
+**Type:** CLI-first tool  
 **One-liner:** One command to turn any HuggingFace model into a live API endpoint.  
 **MVP Scope:** Internal tool, single user (you), HuggingFace models only, CLI only, runs on your existing EC2.
 
@@ -85,25 +85,25 @@ modelup status
 ┌─────────────────────────────────────────────────────┐
 │                   YOUR MACHINE / EC2                 │
 │                                                      │
-│  ┌──────────┐        ┌─────────────────────────┐    │
-│  │          │  HTTP  │   modelup Backend        │    │
-│  │  modelup │───────▶│   (FastAPI on port 9000) │    │
-│  │  CLI     │        │                          │    │
-│  │ (Typer)  │        │  - generator.py          │    │
-│  └──────────┘        │  - docker_manager.py     │    │
-│                      │  - registry.json         │    │
-│                      └────────────┬────────────┘    │
+│  ┌──────────┐        ┌─────────────────────────┐     │
+│  │          │  HTTP  │   modelup Backend       │     │
+│  │  modelup │──────▶ │   (FastAPI on port 9000) │    │
+│  │  CLI     │        │                         │     │
+│  │ (Typer)  │        │  - generator.py         │     │
+│  └──────────┘        │  - docker_manager.py    │     │
+│                      │  - registry.json        │     │
+│                      └────────────┬────────────┘     │
 │                                   │                  │
 │                         Docker SDK (Python)          │
 │                                   │                  │
-│              ┌────────────────────▼──────────────┐  │
+│              ┌────────────────────▼──────────────┐   │
 │              │         Docker Engine              │  │
 │              │                                    │  │
-│              │  ┌──────────┐  ┌──────────┐       │  │
-│              │  │container │  │container │  ...  │  │
-│              │  │port:8001 │  │port:8002 │       │  │
-│              │  │bart-large│  │gpt2      │       │  │
-│              │  └──────────┘  └──────────┘       │  │
+│              │  ┌──────────┐  ┌──────────┐        │  │
+│              │  │container │  │container │  ...   │  │
+│              │  │port:8001 │  │port:8002 │        │  │
+│              │  │bart-large│  │gpt2      │        │  │
+│              │  └──────────┘  └──────────┘        │  │
 │              └────────────────────────────────────┘  │
 │                                                      │
 │  Nginx (reverse proxy)                               │
@@ -188,36 +188,8 @@ modelup/
 └── README.md
 ```
 
----
 
-## 9. GENERATED MODEL APP (what goes inside each container)
-
-From `templates/model_app.py.j2`:
-
-```python
-from fastapi import FastAPI
-from transformers import pipeline
-from pydantic import BaseModel
-
-app = FastAPI()
-model = pipeline("{{ task }}", model="{{ model_id }}")
-
-class Input(BaseModel):
-    input: str
-
-@app.post("/predict")
-def predict(body: Input):
-    result = model(body.input)
-    return {"model": "{{ model_id }}", "result": result}
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-```
-
----
-
-## 10. TECH STACK
+## 9. TECH STACK
 
 | Layer | Tool | Why |
 |---|---|---|
@@ -232,7 +204,7 @@ def health():
 
 ---
 
-## 11. REQUIREMENTS
+## 10. REQUIREMENTS
 
 ### System Requirements (EC2)
 - Docker installed and running
@@ -262,7 +234,7 @@ torch
 
 ---
 
-## 12. TO-DO TASK LIST
+## 11. TO-DO TASK LIST
 
 ### Phase 0 — Setup
 - [ ] Create project repo `modelup`
@@ -309,7 +281,7 @@ torch
 
 ---
 
-## 13. KNOWN RISKS & MITIGATIONS
+## 12. KNOWN RISKS & MITIGATIONS
 
 | Risk | Mitigation |
 |---|---|
@@ -332,5 +304,5 @@ torch
 ---
 
 *modelup MVP — internal tool phase*  
-*Author: Ash Reddy*  
+*Author: Adapala Sriharsha Reddy*  
 *Stack: Python · FastAPI · Typer · Docker · Nginx · HuggingFace Transformers*

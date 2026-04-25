@@ -7,7 +7,7 @@ Architecture | DevOps | MLOps Experiments
 
 ## Overview
 
-Arckai Labs is a public engineering log for exploring and designing SaaS systems.
+Arckai Labs is a public engineering log for exploring and designing systems.
 
 The goal is simple:
 Turn raw ideas into **structured system designs and real MVPs**.
@@ -21,8 +21,8 @@ Each idea is broken down into:
 * MVP scope
 * Key metrics
 
-Some ideas will remain as **design explorations**.
-Others will evolve into **working projects**.
+most of the ideas will remain as **design explorations**.
+but some which impact society will evolve into **working projects**.
 
 ---
 
@@ -32,7 +32,7 @@ Most engineers collect ideas but never structure them.
 
 Arckai exists to:
 
-* Document SaaS system thinking
+* Document system thinking
 * Practice system architecture design
 * Explore DevOps and MLOps infrastructure
 * Build and ship selected MVPs
@@ -50,9 +50,6 @@ arckai-labs
 │   ├── idea-001.md
 │   ├── idea-002.md
 │
-├── architecture
-│   ├── diagrams
-│
 ├── mvp-projects
 │   ├── project-01
 │
@@ -61,7 +58,7 @@ arckai-labs
 
 ### ideas/
 
-Structured breakdowns of SaaS concepts.
+Structured breakdowns of concepts.
 
 Each file includes:
 
@@ -97,10 +94,11 @@ Selected ideas that move beyond design and become **buildable prototypes**.
 
 Arckai primarily explores systems in:
 
-* Cloud Infrastructure (AWS)
+* Cloud Infrastructure
 * DevOps
 * MLOps
-* AI-enabled SaaS tools
+* AI-enabled tools
+* AI Integration 
 * Developer productivity platforms
 
 ---
